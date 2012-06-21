@@ -3,9 +3,10 @@ define git::clone($repo,
                   $user="nobody",
                   $home="~") {
     exec { "git::clone-$name":
-        command => "git clone $repo $destination",
+        command     => "git clone $repo $destination",
         environment => ["HOME=$home"],
-        onlyif => "bash -c 'if [ -s $destination ]; then exit 1; else exit 0; fi'",
-        user => $user,
+        onlyif      => "bash -c 'if [ -s $destination/.git ]; then exit 1; else exit 0; fi'",
+        user        => $user,
+        timeout     => 200,
     }
 }
