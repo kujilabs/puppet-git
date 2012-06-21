@@ -7,6 +7,6 @@ define git::clone($repo,
         environment => ["HOME=$home"],
         onlyif      => "bash -c 'if [ -s $destination/.git ]; then exit 1; else exit 0; fi'",
         user        => $user,
-        timeout     => 200,
+        timeout     => 0,
     }
 }
